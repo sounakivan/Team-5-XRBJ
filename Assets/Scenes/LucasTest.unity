@@ -479,6 +479,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4466084576785863238, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Id
+      value: 8aee0927-2351-4273-9d52-d5f9286b72fd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466084576785863238, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Name
+      value: Tracking State Input
+      objectReference: {fileID: 0}
     - target: {fileID: 5589497133593145648, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -526,6 +534,46 @@ PrefabInstance:
     - target: {fileID: 5589497133593145652, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
       propertyPath: m_Name
       value: XR Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609791579423962305, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: far clip plane
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609791579423962305, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155312890581622954, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_UIScrollAction.m_Action.m_Id
+      value: c09f214b-b686-4d8c-9f2a-76a640038722
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155312890581622954, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_IsTrackedAction.m_Action.m_Id
+      value: cbecf3d6-c12b-4db2-b4be-c99f9592a656
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155312890581622954, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_UIScrollAction.m_Action.m_Name
+      value: UI Scroll
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155312890581622954, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_IsTrackedAction.m_Action.m_Name
+      value: Is Tracked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155312890581622954, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
+      value: 084fcae4-3583-4a46-aaf3-c36e5b0cd66b
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155312890581622954, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Name
+      value: Directional Anchor Rotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775117256685371215, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Id
+      value: a0a93c7c-da19-444a-87c9-e01075efcd32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775117256685371215, guid: fe799b2d0a84dfe43b001b56276fd2fb, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Name
+      value: Tracking State Input
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
