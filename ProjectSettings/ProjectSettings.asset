@@ -731,7 +731,19 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: NORMCORE
+    Android: MAGICLEAP
+    Bratwurst: MAGICLEAP
+    EmbeddedLinux: MAGICLEAP
+    GameCoreXboxOne: MAGICLEAP
+    Nintendo Switch: MAGICLEAP
+    PS4: MAGICLEAP
+    PS5: MAGICLEAP
+    QNX: MAGICLEAP
+    Stadia: MAGICLEAP
+    Standalone: NORMCORE;MAGICLEAP
+    WebGL: MAGICLEAP
+    XboxOne: MAGICLEAP
+    tvOS: MAGICLEAP
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
