@@ -1,5 +1,23 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Normal",
+      "url": "https://normcore-registry.normcore.io",
+      "scopes": [
+        "com.normalvr",
+        "io.normcore"
+      ]
+    },
+    {
+      "name": "Magic Leap",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.magicleap"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.magicleap.unitysdk": "1.8.0",
     "com.unity.collab-proxy": "2.0.5",
     "com.unity.feature.development": "1.0.1",
     "com.unity.render-pipelines.universal": "14.0.8",
