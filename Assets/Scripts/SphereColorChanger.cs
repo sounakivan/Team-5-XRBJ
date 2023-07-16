@@ -31,10 +31,10 @@ public class SphereColorChanger : MonoBehaviour
         while (colorChangeCount < 7) //This loop runs until the number of color changes reaches 7
         {
             SetMaterial(targetMaterial);
-            yield return new WaitForSeconds(0.9f);  //This line pauses the execution of the coroutine for 0.5 seconds. During this time, the sphere is displaying the targetMaterial color.
+            yield return new WaitForSeconds(0.9f);  //This line pauses the execution of the coroutine for 900 ms. During this time, the sphere is displaying green.
 
             SetMaterial(restingMaterial);
-            yield return new WaitForSeconds(colorChangeInterval - 0.9f); // It subtracts the 0.5 seconds to allow the sphere to display the restingMaterial color for the remaining time.
+            yield return new WaitForSeconds(colorChangeInterval - 0.9f); // It subtracts the 0.5 seconds to allow the sphere to display the red color for the remaining time.
 
             colorChangeCount++; // incrememt indicating that a color change has occurred
         }
