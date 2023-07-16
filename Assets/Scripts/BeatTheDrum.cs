@@ -39,9 +39,7 @@ public class BeatTheDrum : MonoBehaviour
     {
         Instantiate(beatPrefab, drumPos, Quaternion.identity);
         Instantiate(beatEffectPrefab, beatEffectPos, Quaternion.Euler(-90,0,0));
-        float timer = 0;
-        timer = timer + Time.deltaTime;
-        if (timer > 10) { Destroy(beatEffectPrefab); }
+        
         beatSource.PlayOneShot(beatClip);
         hasSpawnedBeat = true;
     }
