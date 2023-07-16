@@ -15,6 +15,8 @@ public class MagicLeapInputManager : MonoBehaviour
     TextMeshProUGUI _bothEyesTextStatic;
     [SerializeField, Tooltip("Fixation Point marker")]
     Transform _eyesFixationPoint;
+    [SerializeField]
+    LineRenderer _eyeTrackingDebugLine;
 
     MagicLeapInputs mlInputs;
     MagicLeapInputs.EyesActions eyesActions;
@@ -40,6 +42,8 @@ public class MagicLeapInputManager : MonoBehaviour
     {
         mlInputs = new MagicLeapInputs();
         mlInputs.Enable();
+
+        _eyeTrackingDebugLine.positionCount = 2;
 
 #if !UNITY_EDITOR
             MLPermissions.RequestPermission(MLPermission.EyeTracking, permissionCallbacks);
@@ -71,6 +75,16 @@ public class MagicLeapInputManager : MonoBehaviour
             return;
         }
 
+        MLResult gazeStateResult = MLGazeRecognition.GetState(out MLGazeRecognition.State state);
+        MLResult gazeStaticDataResult = MLGazeRecognition.GetStaticData(out MLGazeRecognition.StaticData data);
+
+        Debug.Log($"MLGazeRecognitionStaticData {gazeStaticDataResult.Result}\n" +
+            $"Vergence {data.Vergence}\n" +
+            $"EyeHeightMax {data.EyeHeightMax}\n" +
+            $"EyeWidthMax {data.EyeWidthMax}\n" +
+            $"MLGazeRecognitionState: {gazeStateResult.Result}\n" +
+            state.ToString());
+
         // Eye data provided by the engine for all XR devices.
         // Used here only to update the status text. The 
         // left/right eye centers are moved to their respective positions &
@@ -101,7 +115,13 @@ public class MagicLeapInputManager : MonoBehaviour
             $"Center:\n({eyes.rightEyePosition.x:F2}, {eyes.rightEyePosition.y:F2}, {eyes.rightEyePosition.z:F2})\n" +
             $"Gaze:\n({rightEyeForwardGaze.x:F2}, {rightEyeForwardGaze.y:F2}, {rightEyeForwardGaze.z:F2})\n" +
             $"Confidence:\n{trackingState.RightCenterConfidence:F2}\n" +
-            $"Openness:\n{eyes.rightEyeOpenAmount:F2}";
+            $"Openness:\n{eyes.rightEyeOpenAmount:F2}\n" +
+            $"MLGazeRecognitionStaticData {gazeStaticDataResult.Result}\n" +
+            $"Vergence {data.Vergence}\n" +
+            $"EyeHeightMax {data.EyeHeightMax}\n" +
+            $"EyeWidthMax {data.EyeWidthMax}\n" +
+            $"MLGazeRecognitionState: {gazeStateResult.Result}\n" +
+            state.ToString();
 
         _rightEyeTextStatic.text = rightEyeText;
 
@@ -115,6 +135,10 @@ public class MagicLeapInputManager : MonoBehaviour
         {
             Debug.Log($"Eye Tracking Blink Registered Right Eye Blink: {trackingState.RightBlink} Left Eye Blink: {trackingState.LeftBlink}");
         }
+
+        //debug line renderer
+        _eyeTrackingDebugLine.SetPosition(0, Camera.main.transform.position); // Set the start position of the line to be the camera's position
+        _eyeTrackingDebugLine.SetPosition(1, eyes.fixationPoint); // Set the end position of the line to be the fixation point
     }
 
     private void OnPermissionDenied(string permission)
