@@ -16,7 +16,7 @@ namespace MagicLeap.Examples
         public GameObject travellerEnviron;
 
 
-        public GameObject cube2;
+        //public GameObject cube2;
 
         void Start()
         {
@@ -43,16 +43,16 @@ namespace MagicLeap.Examples
 
                     if (map.ContainsKey(id) == false)
                     {
-                        if(id == "ffec5c1f-9361-7018-bdae-be16ad164177"){
+                        /*if(id == "5590f9a-4b20-7018-9b65-71c6fb8d51d8"){
                             travellerEnviron.SetActive(true);
-                            cube2.SetActive(true);
-                            cube2.transform.position = anchor.Pose.position;
+                            //cube2.SetActive(true);
+                            //cube2.transform.position = anchor.Pose.position;
                             travellerEnviron.transform.position = anchor.Pose.position;
                             //travellerEnviron.transform.rotation = new Vector3()
-                        }else if(id == "45ab9766-587b-7018-85ab-8ef424e85330"){
+                        }else if(id == "7a4ecda4-43b-7018-b1bc-7bee381713cc"){
                             guideEnviron.SetActive(true);
                             guideEnviron.transform.position = anchor.Pose.position;
-                        }
+                        }*/
 
 
                         GameObject anchorGO = Instantiate(anchorPrefab, xrOrigin);

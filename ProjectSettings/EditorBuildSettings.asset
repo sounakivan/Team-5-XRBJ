@@ -5,8 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BridgeTheVoidGame_lucascopy.unity
     guid: cd88f189c412642d1a75fb6d2c7af3c0
+  - enabled: 0
+    path: Assets/Scenes/BridgeTheVoidGame.unity
+    guid: ad5c8031f19716d4aa2c68b099adfb18
+  - enabled: 1
+    path: Assets/Scenes/BridgeTheVoidGame_final.unity
+    guid: 02e5afb5d26c64ac8b11a8a3153f7433
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 664c6100b7e494e2db37e962411bdc0f, type: 2}

@@ -14,7 +14,7 @@ namespace MagicLeap.Examples
     {
         public GameObject reticle;
         //public Text statusText;
-        public TextMeshProUGUI statusText;
+        //public TextMeshProUGUI statusText;
         private MagicLeapInputs magicLeapInputs;
         private MagicLeapInputs.ControllerActions controllerActions;
         private MLAnchors.Request query;
@@ -41,7 +41,7 @@ namespace MagicLeap.Examples
                 if (MLPermissions.CheckPermission(MLPermission.SpatialAnchors).IsOk)
                 {
                     MLAnchors.GetLocalizationInfo(out MLAnchors.LocalizationInfo info);
-                    statusText.text = info.ToString();
+                    //statusText.text = info.ToString();
                 }
                 else
                     Debug.LogError($"You must include {MLPermission.SpatialAnchors} in AndroidManifest.xml to run this example");

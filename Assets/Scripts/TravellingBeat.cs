@@ -10,6 +10,6 @@ public class TravellingBeat : MonoBehaviour
     private void Start()
     {
         beat = GetComponent<Rigidbody>();
-        beat.velocity = new Vector3(moveSpeed, 0f, 0f);
+        beat.velocity = new Vector3(0f, 0f, moveSpeed);
     }
 }
