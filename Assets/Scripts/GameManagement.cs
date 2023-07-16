@@ -13,7 +13,7 @@ public class GameManagement : MonoBehaviour
         currentIndex = 0;
         
         //Disable all levels except first in the list
-        for (float i = 0; i > levels.Length; i++)
+        for (int i = 0; i > levels.Length; i++)
         {
             levels[currentIndex + 1].SetActive(false);
         }
