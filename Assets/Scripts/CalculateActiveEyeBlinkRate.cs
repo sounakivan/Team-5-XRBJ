@@ -38,8 +38,11 @@ public class CalculateActiveEyeBlinkRate : MonoBehaviour
         }
 
         // Calculate Active, Local Blink Metrics
+        if (LeftBlinksPerSecond.Count == maxActiveListSize)
+        {
 
         // Loop through the list and accumulate the sum
+        Active_LeftEyeBlink_Total = 0;
         for (int i = 0; i < LeftBlinksPerSecond.Count; i++)
         {
             Active_LeftEyeBlink_Total += LeftBlinksPerSecond[i];
@@ -54,5 +57,6 @@ public class CalculateActiveEyeBlinkRate : MonoBehaviour
         Debug.Log("Active Left Eye Blink Ratio: " + Active_LeftEyeBlink_Ratio);
         Debug.Log("Active Left Eye Blink Percent Increase: " + Active_LeftEyeBlink_PercentIncrease);
 
+        }
     }
 }
