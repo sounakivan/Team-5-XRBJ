@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CalculateBaselineEyeblinkRate : MonoBehaviour
+public class CalculateBaselineEyeBlinkRate : MonoBehaviour
 {
 
     private int totalBaselineLeftBlinks = 0;

@@ -4,34 +4,50 @@ using UnityEngine;
 
 public class EyeInteractions : MonoBehaviour
 {
+    [Header("Debug")]
     [SerializeField]
     Transform _hitPointObject;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    Material _missMaterial;
+    [SerializeField]
+    Material _hitMaterial;
 
     // Update is called once per frame
     void Update()
     {
-        Ray ray = new Ray(MagicLeapInputManager.Instance.EyeData.leftEyePosition, MagicLeapInputManager.Instance.LeftEyeForwardGaze);
+        Vector3 eyeDirection = MagicLeapInputManager.Instance.EyeData.fixationPoint - Camera.main.transform.position;
+
+        Ray ray = new Ray(MagicLeapInputManager.Instance.EyeData.leftEyePosition, eyeDirection);
 
         RaycastHit raycastHit;
 
-        Vector3 endPosition = MagicLeapInputManager.Instance.EyeData.leftEyePosition + (10f * MagicLeapInputManager.Instance.LeftEyeForwardGaze);
+        Vector3 endPosition;
 
-        if(Physics.Raycast(ray, out raycastHit, 10f))
+        if (Physics.Raycast(ray, out raycastHit))
         {
             endPosition = raycastHit.point;
-            _hitPointObject.position = endPosition;
+            if(_hitPointObject != null)
+            {
+                _hitPointObject.position = endPosition;
+                _hitPointObject.GetComponent<Renderer>().material = _hitMaterial;
+            }
+            
+            Debug.Log(raycastHit.collider.name);
 
             if (raycastHit.transform.gameObject.name == "")
             {
 
             }
         }
+        else
+        {
+            if (_hitPointObject != null)
+            {
+                _hitPointObject.GetComponent<Renderer>().material = _missMaterial;
+            }
+        }
+
+        
 
     }
 }
