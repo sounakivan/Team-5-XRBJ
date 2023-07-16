@@ -4,51 +4,56 @@ using UnityEngine;
 
 public class CalculateBaselineEyeBlinkRate : MonoBehaviour
 {
+    float BaselineTime; //how many secs eye blinks are recorded for
 
-    private int totalBaselineLeftBlinks = 0;
-    internal static float Baseline_LeftEyeBlink_Rate;
-    private float StartTime;
-    private float ElapsedTime;
-    public float BaselineTime;
+    int _totalBaselineLeftBlinks = 0;
+    float _baseline_LeftEyeBlink_Rate;
+    float StartTime;
+    float ElapsedTime;
 
-    // Start is called before the first frame update
-    void Start()
+    bool _isEyeOpen = false;
+
+    public float TotalBaselineLeftBlinks => _totalBaselineLeftBlinks;
+    public float Baseline_LeftEyeBlink_Rate => _baseline_LeftEyeBlink_Rate;
+
+    private void OnEnable()
     {
+        //TODO: make sure headset is on player's head
         StartTime = Time.time;
     }
 
-    // Update is called once per frame
+    void OnDisable()
+    {
+        ElapsedTime = Time.time - StartTime;
+        StopCount();
+    }
+
     void Update()
     {
         ElapsedTime = Time.time - StartTime; //I "Think" this is in seconds. Double check
-
-        if (ElapsedTime >= BaselineTime)
+        /*
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            StopCount();
-        }
-        else
+            _totalBaselineLeftBlinks++;
+            Debug.Log("Baseline Left Eye Blink Total: " + _totalBaselineLeftBlinks);
+        }*/
+        
+        bool currentIsEyeOpen = MagicLeapInputManager.Instance.TrackingState.LeftBlink;
+        if (_isEyeOpen && !currentIsEyeOpen)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                totalBaselineLeftBlinks++;
-                Debug.Log("Baseline Left Eye Blink Total: " + totalBaselineLeftBlinks);
-
-            }
-
+            _totalBaselineLeftBlinks++;
+            Debug.Log("Baseline Left Eye Blink Total: " + _totalBaselineLeftBlinks);
         }
 
-         
+        _isEyeOpen = currentIsEyeOpen;
     }
-    
 
     private void StopCount()
     {
+        _baseline_LeftEyeBlink_Rate = _totalBaselineLeftBlinks / ElapsedTime; // The tracking time needs to be in seconds, I am assuming this is the total time for tracking.
 
-        Baseline_LeftEyeBlink_Rate = totalBaselineLeftBlinks / ElapsedTime; // The tracking time needs to be in seconds, I am assuming this is the total time for tracking.
-        
-        Debug.Log("Baseline Left Eye Blink Rate: " + Baseline_LeftEyeBlink_Rate);
+        Debug.Log("Baseline Left Eye Blink Rate: " + _baseline_LeftEyeBlink_Rate);
 
         enabled = false;
-
     }
 }

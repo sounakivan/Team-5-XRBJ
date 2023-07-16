@@ -20,6 +20,7 @@ public class MagicLeapInputManager : MonoBehaviour
 
     UnityEngine.InputSystem.XR.Eyes _eyeData;
     Vector3 _leftEyeForwardGaze;
+    InputSubsystem.Extensions.MLEyes.State _trackingState;
 
     MagicLeapInputs mlInputs;
     MagicLeapInputs.EyesActions eyesActions;
@@ -34,6 +35,7 @@ public class MagicLeapInputManager : MonoBehaviour
     //getters/setters
     public UnityEngine.InputSystem.XR.Eyes EyeData => _eyeData;
     public Vector3 LeftEyeForwardGaze => _leftEyeForwardGaze;
+    public InputSubsystem.Extensions.MLEyes.State TrackingState => _trackingState;
 
     static MagicLeapInputManager _instance;
 
@@ -125,8 +127,6 @@ public class MagicLeapInputManager : MonoBehaviour
 
         if (_eyesFixationPointMarker != null)
         {
-
-
             // Manually set fixation point marker so we can apply rotation, since UnityXREyes
             // does not provide it
             _eyesFixationPointMarker.position = _eyeData.fixationPoint;
@@ -137,15 +137,15 @@ public class MagicLeapInputManager : MonoBehaviour
         }
 
         // Eye data specific to Magic Leap
-        InputSubsystem.Extensions.TryGetEyeTrackingState(eyesDevice, out var trackingState);
-
+        InputSubsystem.Extensions.TryGetEyeTrackingState(eyesDevice, out _trackingState);
+        
         _leftEyeForwardGaze = _eyeData.leftEyeRotation * Vector3.forward;
 
         SetDebugEyeText();
 
-        if (trackingState.RightBlink || trackingState.LeftBlink)
+        if (_trackingState.RightBlink || _trackingState.LeftBlink)
         {
-            Debug.Log($"Eye Tracking Blink Registered Right Eye Blink: {trackingState.RightBlink} Left Eye Blink: {trackingState.LeftBlink}");
+            Debug.Log($"Eye Tracking Blink Registered Right Eye Blink: {_trackingState.RightBlink} Left Eye Blink: {_trackingState.LeftBlink}");
         }
     }
 
@@ -163,10 +163,11 @@ public class MagicLeapInputManager : MonoBehaviour
 
     void SetDebugEyeText()
     {
-        /*string leftEyeText =
+        /*
+        string leftEyeText =
             $"Center:\n({_eyeData.leftEyePosition.x:F2}, {_eyeData.leftEyePosition.y:F2}, {_eyeData.leftEyePosition.z:F2})\n" +
             $"Gaze:\n({_leftEyeForwardGaze.x:F2}, {_leftEyeForwardGaze.y:F2}, {_leftEyeForwardGaze.z:F2})\n" +
-            $"Confidence:\n{trackingState.LeftCenterConfidence:F2}\n" +
+            $"Confidence:\n{_trackingState.LeftCenterConfidence:F2}\n" +
             $"Openness:\n{_eyeData.leftEyeOpenAmount:F2}";
 
         _leftEyeTextStatic.text = leftEyeText;
@@ -176,7 +177,7 @@ public class MagicLeapInputManager : MonoBehaviour
         string rightEyeText =
             $"Center:\n({_eyeData.rightEyePosition.x:F2}, {_eyeData.rightEyePosition.y:F2}, {_eyeData.rightEyePosition.z:F2})\n" +
             $"Gaze:\n({rightEyeForwardGaze.x:F2}, {rightEyeForwardGaze.y:F2}, {rightEyeForwardGaze.z:F2})\n" +
-            $"Confidence:\n{trackingState.RightCenterConfidence:F2}\n" +
+            $"Confidence:\n{_trackingState.RightCenterConfidence:F2}\n" +
             $"Openness:\n{_eyeData.rightEyeOpenAmount:F2}\n" +
             $"MLGazeRecognitionStaticData {gazeStaticDataResult.Result}\n" +
             $"Vergence {data.Vergence}\n" +
@@ -189,8 +190,9 @@ public class MagicLeapInputManager : MonoBehaviour
 
         string bothEyesText =
             $"Fixation Point:\n({_eyeData.fixationPoint.x:F2}, {_eyeData.fixationPoint.y:F2}, {_eyeData.fixationPoint.z:F2})\n" +
-            $"Confidence:\n{trackingState.FixationConfidence:F2}";
+            $"Confidence:\n{_trackingState.FixationConfidence:F2}";
 
-        _bothEyesTextStatic.text = $"{bothEyesText}";*/
+        _bothEyesTextStatic.text = $"{bothEyesText}";
+        */
     }
 }
