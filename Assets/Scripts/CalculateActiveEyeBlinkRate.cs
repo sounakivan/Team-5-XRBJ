@@ -10,10 +10,10 @@ public class CalculateActiveEyeBlinkRate : MonoBehaviour
     public int maxActiveListSize = 10; // Maximum size of the list
 
     private float Active_LeftEyeBlink_Total;
-    private float Active_LeftEyeBlink_Rate;
-    private float Active_LeftEyeBlink_Ratio;
-    private float Active_LeftEyeBlink_PercentIncrease;
-    private float Baseline_LeftEyeBlink_Rate = CalculateBaselineEyeblinkRate.Baseline_LeftEyeBlink_Rate;
+    internal static float Active_LeftEyeBlink_Rate;
+    internal static float Active_LeftEyeBlink_Ratio;
+    internal static float Active_LeftEyeBlink_PercentIncrease;
+    internal static float Baseline_LeftEyeBlink_Rate = CalculateBaselineEyeBlinkRate.Baseline_LeftEyeBlink_Rate;
 
 
     void Update()
@@ -49,7 +49,7 @@ public class CalculateActiveEyeBlinkRate : MonoBehaviour
         }
 
         Active_LeftEyeBlink_Rate = Active_LeftEyeBlink_Total / LeftBlinksPerSecond.Count; // The tracking time needs to be in seconds, I am assuming this is the total time for tracking.
-        Active_LeftEyeBlink_Ratio = Active_LeftEyeBlink_Rate / Baseline_LeftEyeBlink_Rate;
+        Active_LeftEyeBlink_Ratio = Baseline_LeftEyeBlink_Rate / Active_LeftEyeBlink_Rate; // Gets smaller as Active BlinkRate increases
         Active_LeftEyeBlink_PercentIncrease = Active_LeftEyeBlink_Ratio * 100;
 
         Debug.Log("Active Left Eye Blink Total: " + Active_LeftEyeBlink_Total);
