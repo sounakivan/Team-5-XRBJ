@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManagement : MonoBehaviour
 {
     public GameObject[] levels;
-    private int currentIndex;
+    private int currentIndex = 0;
 
     private void Start()
     {
@@ -13,9 +13,9 @@ public class GameManagement : MonoBehaviour
         currentIndex = 0;
         
         //Disable all levels except first in the list
-        for (float i = 0; i > levels.Length; i++)
+        for (int i = 1; i < levels.Length; i++)
         {
-            levels[currentIndex + 1].SetActive(false);
+            levels[i].SetActive(false);
         }
     }
 
@@ -25,12 +25,14 @@ public class GameManagement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Call the function to enable the next level
-            EnableNextGameObject();
+            goToNextLevel();
         }
     }
 
-    void EnableNextGameObject()
+    void goToNextLevel()
     {
+        currentIndex++;
+
         if (currentIndex < levels.Length)
         {
             // Disable the previous GameObject (if any)
@@ -41,7 +43,6 @@ public class GameManagement : MonoBehaviour
 
             // Enable the next GameObject in the list
             levels[currentIndex].SetActive(true);
-            currentIndex++;
         }
     }
 }

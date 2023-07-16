@@ -1,7 +1,7 @@
 {
     "logSettings": {
         "sessionId": "SessionID",
-        "mainLogFolder": "/Users/sapphire/Documents/GitHub/Team-5-XRBJ/Assets/../LogFiles_ExciteOMeter/",
+        "mainLogFolder": "C:/Users/Admin/Documents/GitHub/Team-5-XRBJ/Assets/../LogFiles_ExciteOMeter/",
         "mainDebugFilename": "logDebug.txt",
         "sessionJsonFilename": "sessionData.json",
         "captureScreenshots": true,
