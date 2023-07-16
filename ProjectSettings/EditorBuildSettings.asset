@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/BridgeTheVoidGame_lucascopy.unity
+    guid: cd88f189c412642d1a75fb6d2c7af3c0
+  - enabled: 0
+    path: Assets/Scenes/BridgeTheVoidGame.unity
+    guid: ad5c8031f19716d4aa2c68b099adfb18
+  - enabled: 1
+    path: Assets/Scenes/BridgeTheVoidGame_final.unity
+    guid: 02e5afb5d26c64ac8b11a8a3153f7433
   m_configObjects:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: d433586a405654c188ea295b5da9e69a, type: 2}
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: cbbd7b39b991542c8941dfc52ebe7b3a, type: 2}
