@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 1979856406}
   - component: {fileID: 1979856410}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: DrumCue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -613,8 +613,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979856404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.807, y: 0.475, z: -0.037}
-  m_LocalScale: {x: 0.74207115, y: -0.014959412, z: 0.74207115}
+  m_LocalPosition: {x: 0.878, y: 0.619, z: 0}
+  m_LocalScale: {x: 0.17957571, y: -0.003620067, z: 0.17957571}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
