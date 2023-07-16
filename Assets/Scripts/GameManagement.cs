@@ -21,15 +21,15 @@ public class GameManagement : MonoBehaviour
 
     private void Update()
     {
-        // Check if the space bar is pressed (remove once added to other level conditions)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Call the function to enable the next level
-            goToNextLevel();
-        }
+        //// Check if the space bar is pressed (remove once added to other level conditions)
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    // Call the function to enable the next level
+        //    goToNextLevel();
+        //}
     }
 
-    void goToNextLevel()
+    public void goToNextLevel()
     {
         currentIndex++;
 
