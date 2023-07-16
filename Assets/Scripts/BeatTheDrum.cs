@@ -8,16 +8,21 @@ public class BeatTheDrum : MonoBehaviour
 {
     public GameObject beatPrefab;
     public GameObject beatEffectPrefab;
-    public Transform drum;
     public Transform beatEffect;
+    public Transform drum;
+    
     private Vector3 drumPos;
     private Vector3 beatEffectPos;
+    private AudioSource beatSource;
+    private AudioClip beatClip;
     private bool hasSpawnedBeat = false;
 
     public void Start()
     {
         drumPos = drum.position;
         beatEffectPos = beatEffect.position;
+        beatSource = GetComponent<AudioSource>();
+        beatClip = beatSource.clip;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +39,10 @@ public class BeatTheDrum : MonoBehaviour
     {
         Instantiate(beatPrefab, drumPos, Quaternion.identity);
         Instantiate(beatEffectPrefab, beatEffectPos, Quaternion.Euler(-90,0,0));
+        float timer = 0;
+        timer = timer + Time.deltaTime;
+        if (timer > 10) { Destroy(beatEffectPrefab); }
+        beatSource.PlayOneShot(beatClip);
         hasSpawnedBeat = true;
     }
 
