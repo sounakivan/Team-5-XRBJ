@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.MagicLeap;
 using UnityEngine.XR;
 using TMPro;
+using static MagicLeapInputs;
 
 public class MagicLeapInputManager : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class MagicLeapInputManager : MonoBehaviour
     [SerializeField, Tooltip("Both Eyes Statistic Panel")]
     TextMeshProUGUI _bothEyesTextStatic;
     [SerializeField, Tooltip("Fixation Point marker")]
-    Transform _eyesFixationPoint;
+    Transform _eyesFixationPointMarker;
     [SerializeField]
     LineRenderer _eyeTrackingDebugLine;
+
+    UnityEngine.InputSystem.XR.Eyes _eyeData;
+    Vector3 _leftEyeForwardGaze;
 
     MagicLeapInputs mlInputs;
     MagicLeapInputs.EyesActions eyesActions;
@@ -29,10 +33,40 @@ public class MagicLeapInputManager : MonoBehaviour
     readonly MLPermissions.Callbacks permissionCallbacks = new MLPermissions.Callbacks();
 
     //getters/setters
-    //public GameObject Drill => _drill;
+    public UnityEngine.InputSystem.XR.Eyes EyeData => _eyeData;
+    public Vector3 LeftEyeForwardGaze => _leftEyeForwardGaze;
+
+    static MagicLeapInputManager _instance;
+
+    public static MagicLeapInputManager Instance
+    {
+        get
+        {
+            // If the instance is null or not destroyed, find or create a new instance
+            if (_instance == null || ReferenceEquals(_instance, null))
+            {
+                _instance = FindObjectOfType<MagicLeapInputManager>();
+
+                // If no instance exists in the scene, create a new GameObject and attach the script
+                if (_instance == null || ReferenceEquals(_instance, null))
+                {
+                    GameObject singletonObject = new GameObject("MagicLeapInputManager");
+                    _instance = singletonObject.AddComponent<MagicLeapInputManager>();
+                }
+            }
+
+            return _instance;
+        }
+    }
 
     private void Awake()
     {
+        // Ensure only one instance of the HapticsManager exists in the scene
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+
         permissionCallbacks.OnPermissionGranted += OnPermissionGranted;
         permissionCallbacks.OnPermissionDenied += OnPermissionDenied;
         permissionCallbacks.OnPermissionDeniedAndDontAskAgain += OnPermissionDenied;
@@ -89,33 +123,34 @@ public class MagicLeapInputManager : MonoBehaviour
         // Used here only to update the status text. The 
         // left/right eye centers are moved to their respective positions &
         // orientations using InputSystem's TrackedPoseDriver component.
-        var eyes = eyesActions.Data.ReadValue<UnityEngine.InputSystem.XR.Eyes>();
+        _eyeData = eyesActions.Data.ReadValue<UnityEngine.InputSystem.XR.Eyes>();
+        
 
         // Manually set fixation point marker so we can apply rotation, since UnityXREyes
         // does not provide it
-        _eyesFixationPoint.position = eyes.fixationPoint;
-        _eyesFixationPoint.rotation = Quaternion.LookRotation(eyes.fixationPoint - Camera.main.transform.position);
+        _eyesFixationPointMarker.position = _eyeData.fixationPoint;
+        _eyesFixationPointMarker.rotation = Quaternion.LookRotation(_eyeData.fixationPoint - Camera.main.transform.position);
 
         // Eye data specific to Magic Leap
         InputSubsystem.Extensions.TryGetEyeTrackingState(eyesDevice, out var trackingState);
 
-        var leftEyeForwardGaze = eyes.leftEyeRotation * Vector3.forward;
+        _leftEyeForwardGaze = _eyeData.leftEyeRotation * Vector3.forward;
 
         string leftEyeText =
-            $"Center:\n({eyes.leftEyePosition.x:F2}, {eyes.leftEyePosition.y:F2}, {eyes.leftEyePosition.z:F2})\n" +
-            $"Gaze:\n({leftEyeForwardGaze.x:F2}, {leftEyeForwardGaze.y:F2}, {leftEyeForwardGaze.z:F2})\n" +
+            $"Center:\n({_eyeData.leftEyePosition.x:F2}, {_eyeData.leftEyePosition.y:F2}, {_eyeData.leftEyePosition.z:F2})\n" +
+            $"Gaze:\n({_leftEyeForwardGaze.x:F2}, {_leftEyeForwardGaze.y:F2}, {_leftEyeForwardGaze.z:F2})\n" +
             $"Confidence:\n{trackingState.LeftCenterConfidence:F2}\n" +
-            $"Openness:\n{eyes.leftEyeOpenAmount:F2}";
+            $"Openness:\n{_eyeData.leftEyeOpenAmount:F2}";
 
         _leftEyeTextStatic.text = leftEyeText;
 
-        var rightEyeForwardGaze = eyes.rightEyeRotation * Vector3.forward;
+        var rightEyeForwardGaze = _eyeData.rightEyeRotation * Vector3.forward;
 
         string rightEyeText =
-            $"Center:\n({eyes.rightEyePosition.x:F2}, {eyes.rightEyePosition.y:F2}, {eyes.rightEyePosition.z:F2})\n" +
+            $"Center:\n({_eyeData.rightEyePosition.x:F2}, {_eyeData.rightEyePosition.y:F2}, {_eyeData.rightEyePosition.z:F2})\n" +
             $"Gaze:\n({rightEyeForwardGaze.x:F2}, {rightEyeForwardGaze.y:F2}, {rightEyeForwardGaze.z:F2})\n" +
             $"Confidence:\n{trackingState.RightCenterConfidence:F2}\n" +
-            $"Openness:\n{eyes.rightEyeOpenAmount:F2}\n" +
+            $"Openness:\n{_eyeData.rightEyeOpenAmount:F2}\n" +
             $"MLGazeRecognitionStaticData {gazeStaticDataResult.Result}\n" +
             $"Vergence {data.Vergence}\n" +
             $"EyeHeightMax {data.EyeHeightMax}\n" +
@@ -126,7 +161,7 @@ public class MagicLeapInputManager : MonoBehaviour
         _rightEyeTextStatic.text = rightEyeText;
 
         string bothEyesText =
-            $"Fixation Point:\n({eyes.fixationPoint.x:F2}, {eyes.fixationPoint.y:F2}, {eyes.fixationPoint.z:F2})\n" +
+            $"Fixation Point:\n({_eyeData.fixationPoint.x:F2}, {_eyeData.fixationPoint.y:F2}, {_eyeData.fixationPoint.z:F2})\n" +
             $"Confidence:\n{trackingState.FixationConfidence:F2}";
 
         _bothEyesTextStatic.text = $"{bothEyesText}";
@@ -138,7 +173,7 @@ public class MagicLeapInputManager : MonoBehaviour
 
         //debug line renderer
         _eyeTrackingDebugLine.SetPosition(0, Camera.main.transform.position); // Set the start position of the line to be the camera's position
-        _eyeTrackingDebugLine.SetPosition(1, eyes.fixationPoint); // Set the end position of the line to be the fixation point
+        _eyeTrackingDebugLine.SetPosition(1, _eyeData.fixationPoint); // Set the end position of the line to be the fixation point
     }
 
     private void OnPermissionDenied(string permission)
