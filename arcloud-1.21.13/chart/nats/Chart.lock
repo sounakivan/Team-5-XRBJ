@@ -1,0 +1,6 @@
+dependencies:
+- name: nats
+  repository: https://registry.magicleap.io/chartrepo/enterprise/
+  version: 1.2.6
+digest: sha256:35e0f09dedcda2992578cfbe73ccb33a53ebee589992e6d8ae71464eb7e3ae5e
+generated: "2023-05-22T09:34:45.542405-05:00"

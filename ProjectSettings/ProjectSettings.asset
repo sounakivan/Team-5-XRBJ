@@ -77,7 +77,7 @@ PlayerSettings:
   androidFullscreenMode: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 0
+  runInBackground: 1
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -153,7 +153,9 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.Team5XRBJ
+    Standalone: com.DefaultCompany.Team-5---XRBJ
   buildNumber:
     Bratwurst: 0
     Standalone: 0
@@ -242,7 +244,7 @@ PlayerSettings:
   clonedFromGUID: c0afd0d1d80e3634a9dac47e8a0426ea
   templatePackageId: com.unity.template.3d@8.1.1
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  useCustomMainManifest: 0
+  useCustomMainManifest: 1
   useCustomLauncherManifest: 0
   useCustomMainGradleTemplate: 0
   useCustomLauncherGradleManifest: 0
@@ -621,9 +623,9 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
-  cameraUsageDescription: 
+  cameraUsageDescription: Cam test
   locationUsageDescription: 
-  microphoneUsageDescription: 
+  microphoneUsageDescription: Mic test
   bluetoothUsageDescription: 
   macOSTargetOSVersion: 10.13.0
   switchNMETAOverride: 
@@ -874,19 +876,19 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: MAGICLEAP
-    Bratwurst: MAGICLEAP
-    EmbeddedLinux: MAGICLEAP
-    GameCoreXboxOne: MAGICLEAP
-    Nintendo Switch: MAGICLEAP
-    PS4: MAGICLEAP
-    PS5: MAGICLEAP
-    QNX: MAGICLEAP
-    Stadia: MAGICLEAP
-    Standalone: NORMCORE;MAGICLEAP
-    WebGL: MAGICLEAP
-    XboxOne: MAGICLEAP
-    tvOS: MAGICLEAP
+    Android: MAGICLEAP;NORMCORE;FUSION_WEAVER;ANDROID_X86_64;APRIL_TAGS
+    Bratwurst: MAGICLEAP;APRIL_TAGS
+    EmbeddedLinux: MAGICLEAP;APRIL_TAGS
+    GameCoreXboxOne: MAGICLEAP;APRIL_TAGS
+    Nintendo Switch: MAGICLEAP;APRIL_TAGS
+    PS4: MAGICLEAP;APRIL_TAGS
+    PS5: MAGICLEAP;APRIL_TAGS
+    QNX: MAGICLEAP;APRIL_TAGS
+    Stadia: MAGICLEAP;APRIL_TAGS
+    Standalone: NORMCORE;MAGICLEAP;APRIL_TAGS;FUSION_WEAVER
+    WebGL: MAGICLEAP;APRIL_TAGS
+    XboxOne: MAGICLEAP;APRIL_TAGS
+    tvOS: MAGICLEAP;APRIL_TAGS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

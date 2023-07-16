@@ -1,0 +1,6 @@
+dependencies:
+- name: postgresql
+  repository: https://registry.magicleap.io/chartrepo/enterprise/
+  version: 3.3.0
+digest: sha256:028e39dce4d6e43113d12f5feef69a47b6e45f6a4b868f5199fc6e9c13b16f3d
+generated: "2023-03-13T09:39:56.609023683Z"

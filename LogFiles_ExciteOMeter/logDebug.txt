@@ -1,0 +1,30 @@
+unityTimeStamp,Event
+2023-07-16|00:07:17.722,New App Execution
+unityTimeStamp,Event
+2023-07-16|00:09:40.411,New App Execution
+2023-07-16|00:09:51.293,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:10:01.289,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:10:11.284,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:10:21.279,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:10:31.275,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:10:41.270,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:10:51.265,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:11:01.260,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:11:11.255,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:11:21.250,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:11:31.246,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:11:41.241,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:11:51.236,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:12:01.232,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+unityTimeStamp,Event
+2023-07-16|00:14:08.841,New App Execution
+unityTimeStamp,Event
+2023-07-16|00:14:28.391,New App Execution
+2023-07-16|00:14:39.341,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+unityTimeStamp,Event
+2023-07-16|00:24:39.574,New App Execution
+2023-07-16|00:24:50.768,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:25:00.763,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:25:10.759,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:25:20.754,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
+2023-07-16|00:25:30.750,ExciteOMeter >> No incoming data RRInterval was found to calculate feature SDNN
