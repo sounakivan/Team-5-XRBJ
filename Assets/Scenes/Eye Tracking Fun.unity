@@ -457,7 +457,7 @@ MonoBehaviour:
   _leftEyeTextStatic: {fileID: 541090536}
   _rightEyeTextStatic: {fileID: 1877944434}
   _bothEyesTextStatic: {fileID: 746993071}
-  _eyesFixationPointMarker: {fileID: 0}
+  _eyesFixationPointMarker: {fileID: 1634470228}
   _eyeTrackingDebugLine: {fileID: 573349145}
 --- !u!4 &573349144
 Transform:
@@ -1349,6 +1349,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2a81c12a39438489b6ab6f947b34f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverFeedback:
+    initHz: 0
+    finalHz: 0
+    durationInMs: 0
+    intensity: 0
+  selectFeedback:
+    initHz: 0
+    finalHz: 0
+    durationInMs: 0
+    intensity: 0
 --- !u!4 &1019948644
 Transform:
   m_ObjectHideFlags: 0
@@ -1362,7 +1372,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093070331
 GameObject:
@@ -1390,13 +1400,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093070331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.862, y: 0, z: 0.685}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.48503375, y: -0.047738757, z: 1.0475296}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 2020099413}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1093070333
 SphereCollider:
@@ -1415,7 +1425,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1644,7 +1654,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b1e77bd680c94b242988584c0c4ff08a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1959,6 +1969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitPointObject: {fileID: 1093070332}
+  _missMaterial: {fileID: 2100000, guid: 8b482d6ea81414545b18dba58cee367d, type: 2}
+  _hitMaterial: {fileID: 2100000, guid: aa536ca63c3b2d44aac8308175c4bf95, type: 2}
 --- !u!4 &2020099413
 Transform:
   m_ObjectHideFlags: 0
@@ -1970,7 +1982,8 @@ Transform:
   m_LocalPosition: {x: 1.3470337, y: 0.047738757, z: -0.36252955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1093070332}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

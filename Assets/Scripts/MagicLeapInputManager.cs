@@ -5,6 +5,7 @@ using UnityEngine.XR.MagicLeap;
 using UnityEngine.XR;
 using TMPro;
 using static MagicLeapInputs;
+using UnityEngine.XR.ARSubsystems;
 
 public class MagicLeapInputManager : MonoBehaviour
 {
@@ -16,8 +17,6 @@ public class MagicLeapInputManager : MonoBehaviour
     TextMeshProUGUI _bothEyesTextStatic;
     [SerializeField, Tooltip("Fixation Point marker")]
     Transform _eyesFixationPointMarker;
-    [SerializeField]
-    LineRenderer _eyeTrackingDebugLine;
 
     UnityEngine.InputSystem.XR.Eyes _eyeData;
     Vector3 _leftEyeForwardGaze;
@@ -77,11 +76,7 @@ public class MagicLeapInputManager : MonoBehaviour
         mlInputs = new MagicLeapInputs();
         mlInputs.Enable();
 
-        _eyeTrackingDebugLine.positionCount = 2;
-
-#if !UNITY_EDITOR
-            MLPermissions.RequestPermission(MLPermission.EyeTracking, permissionCallbacks);
-#endif
+        MLPermissions.RequestPermission(MLPermission.EyeTracking, permissionCallbacks);
     }
 
     private void OnDestroy()
@@ -112,31 +107,63 @@ public class MagicLeapInputManager : MonoBehaviour
         MLResult gazeStateResult = MLGazeRecognition.GetState(out MLGazeRecognition.State state);
         MLResult gazeStaticDataResult = MLGazeRecognition.GetStaticData(out MLGazeRecognition.StaticData data);
 
+        /* 
+        //no data showing
         Debug.Log($"MLGazeRecognitionStaticData {gazeStaticDataResult.Result}\n" +
             $"Vergence {data.Vergence}\n" +
             $"EyeHeightMax {data.EyeHeightMax}\n" +
             $"EyeWidthMax {data.EyeWidthMax}\n" +
             $"MLGazeRecognitionState: {gazeStateResult.Result}\n" +
             state.ToString());
+        */
 
         // Eye data provided by the engine for all XR devices.
         // Used here only to update the status text. The 
         // left/right eye centers are moved to their respective positions &
         // orientations using InputSystem's TrackedPoseDriver component.
         _eyeData = eyesActions.Data.ReadValue<UnityEngine.InputSystem.XR.Eyes>();
-        
 
-        // Manually set fixation point marker so we can apply rotation, since UnityXREyes
-        // does not provide it
-        _eyesFixationPointMarker.position = _eyeData.fixationPoint;
-        _eyesFixationPointMarker.rotation = Quaternion.LookRotation(_eyeData.fixationPoint - Camera.main.transform.position);
+        if (_eyesFixationPointMarker != null)
+        {
+
+
+            // Manually set fixation point marker so we can apply rotation, since UnityXREyes
+            // does not provide it
+            _eyesFixationPointMarker.position = _eyeData.fixationPoint;
+            _eyesFixationPointMarker.rotation = Quaternion.LookRotation(_eyeData.fixationPoint - Camera.main.transform.position);
+
+            Vector3 eyeDirection = _eyeData.fixationPoint - Camera.main.transform.position;
+            _eyesFixationPointMarker.position = Camera.main.transform.position + eyeDirection.normalized * 1f;
+        }
 
         // Eye data specific to Magic Leap
         InputSubsystem.Extensions.TryGetEyeTrackingState(eyesDevice, out var trackingState);
 
         _leftEyeForwardGaze = _eyeData.leftEyeRotation * Vector3.forward;
 
-        string leftEyeText =
+        SetDebugEyeText();
+
+        if (trackingState.RightBlink || trackingState.LeftBlink)
+        {
+            Debug.Log($"Eye Tracking Blink Registered Right Eye Blink: {trackingState.RightBlink} Left Eye Blink: {trackingState.LeftBlink}");
+        }
+    }
+
+    private void OnPermissionDenied(string permission)
+    {
+        MLPluginLog.Error($"{permission} denied, example won't function.");
+    }
+
+    private void OnPermissionGranted(string permission)
+    {
+        InputSubsystem.Extensions.MLEyes.StartTracking();
+        eyesActions = new MagicLeapInputs.EyesActions(mlInputs);
+        permissionGranted = true;
+    }
+
+    void SetDebugEyeText()
+    {
+        /*string leftEyeText =
             $"Center:\n({_eyeData.leftEyePosition.x:F2}, {_eyeData.leftEyePosition.y:F2}, {_eyeData.leftEyePosition.z:F2})\n" +
             $"Gaze:\n({_leftEyeForwardGaze.x:F2}, {_leftEyeForwardGaze.y:F2}, {_leftEyeForwardGaze.z:F2})\n" +
             $"Confidence:\n{trackingState.LeftCenterConfidence:F2}\n" +
@@ -164,27 +191,6 @@ public class MagicLeapInputManager : MonoBehaviour
             $"Fixation Point:\n({_eyeData.fixationPoint.x:F2}, {_eyeData.fixationPoint.y:F2}, {_eyeData.fixationPoint.z:F2})\n" +
             $"Confidence:\n{trackingState.FixationConfidence:F2}";
 
-        _bothEyesTextStatic.text = $"{bothEyesText}";
-
-        if (trackingState.RightBlink || trackingState.LeftBlink)
-        {
-            Debug.Log($"Eye Tracking Blink Registered Right Eye Blink: {trackingState.RightBlink} Left Eye Blink: {trackingState.LeftBlink}");
-        }
-
-        //debug line renderer
-        _eyeTrackingDebugLine.SetPosition(0, Camera.main.transform.position); // Set the start position of the line to be the camera's position
-        _eyeTrackingDebugLine.SetPosition(1, _eyeData.fixationPoint); // Set the end position of the line to be the fixation point
-    }
-
-    private void OnPermissionDenied(string permission)
-    {
-        MLPluginLog.Error($"{permission} denied, example won't function.");
-    }
-
-    private void OnPermissionGranted(string permission)
-    {
-        InputSubsystem.Extensions.MLEyes.StartTracking();
-        eyesActions = new MagicLeapInputs.EyesActions(mlInputs);
-        permissionGranted = true;
+        _bothEyesTextStatic.text = $"{bothEyesText}";*/
     }
 }
