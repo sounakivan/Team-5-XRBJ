@@ -25,6 +25,15 @@ public class BeatTheDrum : MonoBehaviour
         beatClip = beatSource.clip;
     }
 
+    private void Update()
+    {
+        //Debugging
+        if(Input.GetKeyUp(KeyCode.D))
+        {
+            sendBeat();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collision is happening with the desired object
@@ -39,7 +48,7 @@ public class BeatTheDrum : MonoBehaviour
     {
         Instantiate(beatPrefab, drumPos, Quaternion.identity);
         Instantiate(beatEffectPrefab, beatEffectPos, Quaternion.Euler(-90,0,0));
-        
+
         beatSource.PlayOneShot(beatClip);
         hasSpawnedBeat = true;
     }
