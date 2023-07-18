@@ -15,14 +15,13 @@ public class SineWaveMovement : MonoBehaviour
      float _yFrequency = 2f;   // Adjust the frequency of the sine wave for Y-axis
      float _yAmplitude = .03f;     // Adjust the amplitude of the sine wave for Y-axis
 
-    private float time = 0f;
-    private Vector3 originalPosition;
-
+    float time = 0f;
+    Vector3 originalPosition;
 
     public float moveSpeed = 5f; // Adjust this value to control the movement speed //og 5
-    private Rigidbody beat;
+    Rigidbody beat;
 
-    private void Start()
+    void Start()
     {
         _calculateActiveEyeBlinkRate = FindAnyObjectByType<CalculateActiveEyeBlinkRate>(); //TODO: gross fix this
 
@@ -36,10 +35,10 @@ public class SineWaveMovement : MonoBehaviour
         
         Active_LeftEyeBlink_Ratio = _calculateActiveEyeBlinkRate.Active_LeftEyeBlink_Ratio;
         //DEBUG
-        if (Active_LeftEyeBlink_Ratio > 1 || Active_LeftEyeBlink_Ratio < 0)
+        /*if (Active_LeftEyeBlink_Ratio > 1 || Active_LeftEyeBlink_Ratio < 0)
         {
             Active_LeftEyeBlink_Ratio = .5f;
-        }
+        }*/
     }
 
     void Update()

@@ -18,8 +18,7 @@ public class CalculateBaselineEyeBlinkRate : MonoBehaviour
 
     private void OnEnable()
     {
-        //TODO: make sure headset is on player's head
-        StartTime = Time.time;
+        _totalBaselineLeftBlinks = 0;
     }
 
     void OnDisable()
@@ -30,7 +29,6 @@ public class CalculateBaselineEyeBlinkRate : MonoBehaviour
 
     void Update()
     {
-        ElapsedTime = Time.time - StartTime; //I "Think" this is in seconds. Double check
         /*
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -41,6 +39,12 @@ public class CalculateBaselineEyeBlinkRate : MonoBehaviour
         bool currentIsEyeOpen = MagicLeapInputManager.Instance.TrackingState.LeftBlink;
         if (_isEyeOpen && !currentIsEyeOpen)
         {
+            //start timer at first blink to make sure that the headset is on the player's head
+            if(_totalBaselineLeftBlinks == 0)
+            {
+                StartTime = Time.time;
+            }
+
             _totalBaselineLeftBlinks++;
             Debug.Log("Baseline Left Eye Blink Total: " + _totalBaselineLeftBlinks);
         }
